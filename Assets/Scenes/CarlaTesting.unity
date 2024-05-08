@@ -316,6 +316,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pont
       objectReference: {fileID: 0}
+    - target: {fileID: -2577548232221058511, guid: dc9ec102d2a4f6847aeed41150be3bc4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 36.1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2577548232221058511, guid: dc9ec102d2a4f6847aeed41150be3bc4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: dc9ec102d2a4f6847aeed41150be3bc4, type: 3}
       propertyPath: m_Name
       value: LD_P2wtefrick

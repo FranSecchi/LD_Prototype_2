@@ -27,13 +27,13 @@ public class Shooting : MonoBehaviour
     private void Start()
     {
         ammo = magazine;
-        //ammoTxt.text = $"{ammo}/{magazine} | {maxAmmo}";
+        ammoTxt.text = $"{ammo}/{magazine} | {maxAmmo}";
     }
     // Update is called once per frame
     void FixedUpdate()
     {
         if (ammo > magazine) ammo = magazine;
-        myTime += Time.deltaTime;
+        myTime += Time.fixedDeltaTime;
 
         if(ammo > 0 && myTime >= fireRate && Input.GetKeyDown(fireKey))
         {
@@ -42,7 +42,7 @@ public class Shooting : MonoBehaviour
         }
         if (Input.GetKeyDown(reloadKey))
             Reload();
-        //ammoTxt.text = $"{ammo}/{magazine} | {maxAmmo}";
+        ammoTxt.text = $"{ammo}/{magazine} | {maxAmmo}";
     }
 
     private void Reload()
@@ -57,7 +57,6 @@ public class Shooting : MonoBehaviour
     {
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        Debug.Log("shoot");
         // Perform the raycast
         if (Physics.Raycast(ray, out hit, maxDistance))
         {

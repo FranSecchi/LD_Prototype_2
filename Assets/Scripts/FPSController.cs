@@ -48,7 +48,7 @@ public class FPSController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         InputRotation();
         InputMovement();
@@ -108,18 +108,13 @@ public class FPSController : MonoBehaviour
 
     private void InputRotation()
     {
-        float mousePositionX = Input.GetAxis("Mouse X");
-        float mousePositionY = Input.GetAxis("Mouse Y");
-        float temp = m_pitch + mousePositionY * Time.fixedDeltaTime * m_mouseSensitivityY;
-        if (Mathf.Abs(temp) < m_angleVisionY / 2 ||
-            (temp > m_angleVisionY / 2 && mousePositionY > 0) || //eje invertido
-            (temp < -m_angleVisionY / 2 && mousePositionY < 0))
-        {
-            m_pitch += flag ?
-                mousePositionY * Time.fixedDeltaTime * m_mouseSensitivityY * 1 :
-                mousePositionY * Time.fixedDeltaTime * m_mouseSensitivityY * -1;
-        }
-        m_yaw += mousePositionX * Time.fixedDeltaTime * m_mouseSensitivityX;
+        float mousePositionX = Input.GetAxis("Mouse X") * m_mouseSensitivityX;
+        float mousePositionY = Input.GetAxis("Mouse Y") * m_mouseSensitivityY;
+
+        m_pitch -= mousePositionY * Time.deltaTime;
+        m_pitch = Mathf.Clamp(m_pitch, -m_angleVisionY / 2, m_angleVisionY / 2); // Ensure pitch stays within desired range
+
+        m_yaw += mousePositionX * Time.deltaTime;
 
         transform.rotation = Quaternion.Euler(0.0f, m_yaw, 0.0f);
         m_PitchController.localRotation = Quaternion.Euler(m_pitch, 0.0f, 0.0f);

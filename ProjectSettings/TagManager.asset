@@ -8,17 +8,17 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Item
+  - Ground
   - Water
   - UI
+  - 
+  - 
+  - PostProcessing
+  - Weapon
+  - Target
+  - Projectile
   - Player
-  - Ground
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerCollisionOnly
   - 
   - 
   - 

@@ -8,6 +8,7 @@ public class Spider : MonoBehaviour
     public Transform player;
     public float detectionRadius = 10f;
     public float groundDist = 10f;
+    public float damage = 10f;
     public LayerMask playerLayer;
     public LayerMask groundLayer;
     private CharacterController ch;
@@ -105,8 +106,7 @@ public class Spider : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            player = other.transform;
-            StartFollowingPlayer();
+            other.transform.GetComponent<IDamageable>().TakeDamage(damage, Vector3.zero);
         }
     }
 }

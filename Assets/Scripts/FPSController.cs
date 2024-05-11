@@ -23,21 +23,30 @@ public class FPSController : MonoBehaviour
     public KeyCode jump;
     public float m_jumpImpulse;
 
+    public KeyCode sprint;
+    public float m_sprintSpeed;
+    public float m_stamina;
+    public float runCost;
+    public float regainStaminaSpeed;
 
-    public KeyCode run;
     private CharacterController m_cc;
     private Vector3 m_front;
     private Vector3 m_right;
     private Vector3 m_movement;
 
     private float m_verticalVelocity;
+    private float currentStamina;
     private bool m_OnGrounded;
     private bool isDead = false;
+    private bool isSprinting = false;
     private const float m_surfaceGravity = -9.8f;
+
+    public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
 
     // Start is called before the first frame update
     void Start()
     {
+        currentStamina = m_stamina;
         m_yaw = transform.rotation.x;
         m_pitch = transform.rotation.y;
         m_cc = GetComponent<CharacterController>();
@@ -47,8 +56,8 @@ public class FPSController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InputRotation();
         if (isDead) return;
+        InputRotation();
         InputMovement();
 
         if (Input.GetKeyDown(jump))
@@ -57,15 +66,18 @@ public class FPSController : MonoBehaviour
         }
     }
 
+
     private void InputMovement()
     {
+        Sprinting();
         m_front = transform.forward * Input.GetAxis("Vertical");
         m_right = transform.right * Input.GetAxis("Horizontal");
 
         m_movement = m_front + m_right;
         m_verticalVelocity += m_OnGrounded ? 0 : m_surfaceGravity * Time.deltaTime;
         m_movement.y = m_verticalVelocity;
-        CollisionFlags collision = m_cc.Move(m_movement * m_speed * Time.deltaTime);
+        m_movement *= isSprinting ? m_sprintSpeed : m_speed;
+        CollisionFlags collision = m_cc.Move(m_movement * Time.deltaTime);
         if (collision.Equals(CollisionFlags.Below))
         {
             m_OnGrounded = true;
@@ -81,16 +93,23 @@ public class FPSController : MonoBehaviour
     {
         float mousePositionX = Input.GetAxis("Mouse X") * m_mouseSensitivityX;
         float mousePositionY = Input.GetAxis("Mouse Y") * m_mouseSensitivityY;
-        //float smoothFactor = 0.1f; // Adjust as needed
-        //float smoothedMousePositionX = Mathf.Lerp(0, mousePositionX, smoothFactor);
-        //float smoothedMousePositionY = Mathf.Lerp(0, mousePositionY, smoothFactor);
-
         m_pitch -= mousePositionY;
         m_pitch = Mathf.Clamp(m_pitch, -m_angleVisionY / 2, m_angleVisionY / 2); // Ensure pitch stays within desired range
 
         //m_yaw += mousePositionX;
         m_PitchController.localRotation = Quaternion.Euler(m_pitch, 0.0f, 0.0f);
         transform.rotation *= Quaternion.Euler(0.0f, mousePositionX, 0.0f);
+    }
+    private void Sprinting()
+    {
+        if (Input.GetKey(sprint))
+        {
+            isSprinting = true;
+            if (currentStamina <= 0) isSprinting = false;
+            else currentStamina -= Time.deltaTime * runCost;
+        }
+        else if (currentStamina < m_stamina) currentStamina = Mathf.Min(m_stamina, currentStamina + Time.deltaTime * regainStaminaSpeed);
+        
     }
     internal void Die()
     {

@@ -2,18 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lantern : MonoBehaviour, Item
+public class Pistol : MonoBehaviour, Item
 {
-    [SerializeField] private Transform pitch;
-    [SerializeField] private GameObject model;
-    [SerializeField] private GameObject light;
+    [SerializeField] private Transform hand;
+    [SerializeField] private Shooting shooting;
     public void pickUp()
     {
-        transform.parent = pitch;
+        transform.parent = hand;
         transform.localPosition = Vector3.zero;
-        transform.rotation = pitch.rotation;
-        light.SetActive(true);
-        Destroy(model);
+        transform.rotation = hand.rotation;
+        shooting.enabled = true;
     }
 
     // Start is called before the first frame update

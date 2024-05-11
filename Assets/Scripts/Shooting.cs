@@ -29,6 +29,10 @@ public class Shooting : MonoBehaviour
         ammo = magazine;
         ammoTxt.text = $"{ammo}/{magazine} | {maxAmmo}";
     }
+    private void OnEnable()
+    {
+        ammoTxt.transform.parent.gameObject.SetActive(true);
+    }
     // Update is called once per frame
     void FixedUpdate()
     {

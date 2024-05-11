@@ -11,7 +11,7 @@ public class Spider : MonoBehaviour
     public LayerMask playerLayer;
     public LayerMask groundLayer;
     private CharacterController ch;
-
+    private float diff = 0f;
     private bool isFollowingPlayer = false;
     private void OnDrawGizmos()
     {
@@ -22,6 +22,7 @@ public class Spider : MonoBehaviour
     private void Start()
     {
         ch = GetComponent<CharacterController>();
+        diff = player.GetComponent<CharacterController>().height / 2 - ch.height / 2;
     }
     void Update()
     {
@@ -34,7 +35,12 @@ public class Spider : MonoBehaviour
                 if (collider.CompareTag("Player"))
                 {
                     player = collider.transform;
-                    StartFollowingPlayer();
+                    RaycastHit hit;
+                    Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius);
+                    if (hit.collider.CompareTag("Player"))
+                    {
+                        StartFollowingPlayer();
+                    }
                     break;
                 }
             }
@@ -54,7 +60,7 @@ public class Spider : MonoBehaviour
     {
         if (player != null)
         {
-            Vector3 direction = (player.position - transform.position).normalized;
+            Vector3 direction = (player.position - diff*Vector3.up - transform.position).normalized;
 
             // Perform sphere cast to check for ground or wall
             RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);

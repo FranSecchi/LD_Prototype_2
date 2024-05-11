@@ -128,8 +128,9 @@ MonoBehaviour:
   sprint: 304
   m_sprintSpeed: 7
   m_stamina: 5
-  runCost: 1
-  regainStaminaSpeed: 3
+  runCost: 2
+  regainStaminaSpeed: 1
+  m_sprintFoV: 73
 --- !u!143 &4190659115314956283
 CharacterController:
   m_ObjectHideFlags: 0
@@ -164,7 +165,8 @@ MonoBehaviour:
   camera: {fileID: 4190659116668344371}
   damage: 5
   fireRate: 0.5
-  maxDistance: 100
+  shootRange: 30
+  meleeRange: 2.5
   magazine: 10
   maxAmmo: 50
   ammoTxt: {fileID: 0}
@@ -186,7 +188,7 @@ MonoBehaviour:
   maxDistance: 4
   itemLayer:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 64
   key: 101
 --- !u!114 &876966276565187247
 MonoBehaviour:

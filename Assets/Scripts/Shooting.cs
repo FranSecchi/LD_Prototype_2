@@ -11,7 +11,8 @@ public class Shooting : MonoBehaviour
     //public GameObject decal;
     public float damage = 0.0f;
     public float fireRate = 0.0f;
-    public float maxDistance = 0.0f;
+    public float shootRange = 0.0f;
+    public float meleeRange = 0.0f;
     public int magazine = 0;
     public int maxAmmo = 0;
     public TextMeshProUGUI ammoTxt;
@@ -24,6 +25,13 @@ public class Shooting : MonoBehaviour
 
     public int Ammo { get => ammo; set => ammo = value; }
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(camera.transform.position, camera.transform.position + camera.transform.forward * shootRange);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(camera.transform.position, camera.transform.position + camera.transform.forward * meleeRange);
+    }
     private void Start()
     {
         ammo = magazine;
@@ -39,7 +47,7 @@ public class Shooting : MonoBehaviour
         if (ammo > magazine) ammo = magazine;
         myTime += Time.fixedDeltaTime;
 
-        if(ammo > 0 && myTime >= fireRate && Input.GetKeyDown(fireKey))
+        if(myTime >= fireRate && Input.GetKeyDown(fireKey))
         {
             Shoot();
             myTime = 0f;
@@ -61,8 +69,9 @@ public class Shooting : MonoBehaviour
     {
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
+        float distance = ammo > 0 ? shootRange : meleeRange;
         // Perform the raycast
-        if (Physics.Raycast(ray, out hit, maxDistance))
+        if (Physics.Raycast(ray, out hit, distance))
         {
             //Instantiate(decal, hit.point + (hit.normal * 0.01f), Quaternion.LookRotation(hit.normal), hit.collider.gameObject.transform);
             IDamageable damageable = hit.collider.gameObject.GetComponent<IDamageable>();
@@ -73,10 +82,7 @@ public class Shooting : MonoBehaviour
             }
 
         }
-        else
-        {
-        }
-
-        ammo--;
+        if(ammo > 0)
+            ammo--;
     }
 }

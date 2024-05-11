@@ -10,11 +10,6 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] private LayerMask itemLayer;
     [SerializeField] private KeyCode key;
     private RaycastHit r;
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(pitch.position, pitch.position + pitch.forward * maxDistance);
-    }
     private void Update()
     {
         if (Input.GetKey(key))

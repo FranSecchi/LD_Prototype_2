@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4964342665838529667}
   - component: {fileID: 4964342665838529666}
   - component: {fileID: 4964342665838529677}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4964342665838529676}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.13, y: 1.69, z: -10.14}
   m_LocalScale: {x: 0.17428672, y: 0.1806972, z: 0.61993}
   m_ConstrainProportionsScale: 0
@@ -96,8 +96,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 3.825182, y: 6.874219, z: 2.0472438}
+  m_Center: {x: 0.49297994, y: 2.9371095, z: -0.0539456}
 --- !u!114 &4964342665838529677
 MonoBehaviour:
   m_ObjectHideFlags: 0

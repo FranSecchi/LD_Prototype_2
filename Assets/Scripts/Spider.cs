@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : MonoBehaviour
+public class Spider : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 3f;
-    public Transform player;
+    private Transform player;
     public float detectionRadius = 10f;
     public float groundDist = 10f;
     public float damage = 10f;
@@ -14,6 +14,7 @@ public class Spider : MonoBehaviour
     private CharacterController ch;
     private float diff = 0f;
     private bool isFollowingPlayer = false;
+    private FPSController contr;
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
@@ -22,34 +23,31 @@ public class Spider : MonoBehaviour
     }
     private void Start()
     {
+        contr = FindObjectOfType<FPSController>();
         ch = GetComponent<CharacterController>();
-        diff = player.GetComponent<CharacterController>().height / 2 - ch.height / 2;
     }
     void Update()
     {
+        if (contr.IsDead) Die();
         Debug.DrawRay(transform.position, transform.forward* 30f, Color.green);
-        if (!isFollowingPlayer)
+        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
+            isFollowingPlayer = false;
+        foreach (Collider collider in colliders)
         {
-            Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
-            foreach (Collider collider in colliders)
+            if (collider.CompareTag("Player"))
             {
-                if (collider.CompareTag("Player"))
+                player = collider.transform;
+                diff = player.GetComponent<CharacterController>().height / 2 - ch.height / 2;
+                RaycastHit hit;
+                bool b = Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius);
+                if (b && hit.collider.CompareTag("Player"))
                 {
-                    player = collider.transform;
-                    RaycastHit hit;
-                    Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius);
-                    if (hit.collider.CompareTag("Player"))
-                    {
-                        StartFollowingPlayer();
-                    }
-                    break;
+                    StartFollowingPlayer();
                 }
+                break;
             }
         }
-        else
-        {
-            FollowPlayer();
-        }
+        FollowPlayer();
     }
 
     void StartFollowingPlayer()
@@ -59,7 +57,7 @@ public class Spider : MonoBehaviour
 
     void FollowPlayer()
     {
-        if (player != null)
+        if (isFollowingPlayer)
         {
             Vector3 direction = (player.position - diff*Vector3.up - transform.position).normalized;
 
@@ -108,5 +106,15 @@ public class Spider : MonoBehaviour
         {
             other.transform.GetComponent<IDamageable>().TakeDamage(damage, Vector3.zero);
         }
+    }
+
+    public void TakeDamage(float amount, Vector3 hitPoint)
+    {
+        Die();
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }

@@ -28,6 +28,8 @@ public class FPSController : MonoBehaviour
     public float m_stamina;
     public float runCost;
     public float regainStaminaSpeed;
+    public float m_sprintFoV;
+
 
     private CharacterController m_cc;
     private Vector3 m_front;
@@ -39,9 +41,12 @@ public class FPSController : MonoBehaviour
     private bool m_OnGrounded;
     private bool isDead = false;
     private bool isSprinting = false;
+    private bool hasEaten = false;
     private const float m_surfaceGravity = -9.8f;
+    private float fov;
 
     public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +56,7 @@ public class FPSController : MonoBehaviour
         m_pitch = transform.rotation.y;
         m_cc = GetComponent<CharacterController>();
         Cursor.lockState = CursorLockMode.Locked;
+        fov = Camera.main.fieldOfView;
     }
 
     // Update is called once per frame
@@ -106,10 +112,17 @@ public class FPSController : MonoBehaviour
         {
             isSprinting = true;
             if (currentStamina <= 0) isSprinting = false;
-            else currentStamina -= Time.deltaTime * runCost;
+            else if (!hasEaten) currentStamina -= Time.deltaTime * runCost;
+            else if (currentStamina < m_stamina) currentStamina = Mathf.Min(m_stamina, currentStamina + Time.deltaTime * regainStaminaSpeed);
+
         }
-        else if (currentStamina < m_stamina) currentStamina = Mathf.Min(m_stamina, currentStamina + Time.deltaTime * regainStaminaSpeed);
-        
+        else
+        {
+            isSprinting = false;
+            if (currentStamina < m_stamina) currentStamina = Mathf.Min(m_stamina, currentStamina + Time.deltaTime * regainStaminaSpeed);
+        }
+        float f = isSprinting ? m_sprintFoV : fov;
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, f, 0.15f) ;
     }
     internal void Die()
     {
@@ -121,5 +134,15 @@ public class FPSController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isDead = false;
+    }
+    internal void Eat(float ammount)
+    {
+        StartCoroutine(DoEat(ammount));
+    }
+    private IEnumerator DoEat(float ammount)
+    {
+        hasEaten = true;
+        yield return new WaitForSeconds(ammount);
+        hasEaten = false;
     }
 }

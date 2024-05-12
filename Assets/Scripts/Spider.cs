@@ -9,11 +9,13 @@ public class Spider : MonoBehaviour, IDamageable
     public float detectionRadius = 10f;
     public float groundDist = 10f;
     public float damage = 10f;
+    public float damageCD = 0.5f;
     public LayerMask playerLayer;
     public LayerMask groundLayer;
     public LayerMask wallLayer;
     private CharacterController ch;
     private float diff = 0f;
+    private float elapsed = 0f;
     private bool isFollowingPlayer = false;
     private FPSController contr;
     private void OnDrawGizmos()
@@ -31,6 +33,7 @@ public class Spider : MonoBehaviour, IDamageable
     {
         if (contr.IsDead) Die();
         FollowPlayer();
+        elapsed += Time.deltaTime;
     }
 
     void StartFollowingPlayer()
@@ -43,7 +46,11 @@ public class Spider : MonoBehaviour, IDamageable
         if (isFollowingPlayer)
         {
             Vector3 direction = (player.position - diff*Vector3.up - transform.position);
-            if(direction.magnitude < groundDist) player.GetComponent<IDamageable>().TakeDamage(damage, Vector3.zero);
+            if (direction.magnitude < ch.radius + 0.8f && elapsed > damageCD)
+            {
+                player.GetComponent<IDamageable>().TakeDamage(damage, transform);
+                elapsed = 0f;
+            }
             direction.Normalize();
             // Perform sphere cast to check for ground or wall
             RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);
@@ -83,19 +90,21 @@ public class Spider : MonoBehaviour, IDamageable
             }
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            player = other.transform;
+            if(player==null) player = other.transform;
             diff = player.GetComponent<CharacterController>().height / 2 - ch.height / 2;
             RaycastHit hit;
             // Use the adjusted starting position for the raycast
             bool b = Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius, wallLayer);
+            Debug.DrawRay(transform.position, (player.position - transform.position), Color.magenta);
             if (b && hit.collider.CompareTag("Player"))
             {
-                StartFollowingPlayer();
+                isFollowingPlayer = true;
             }
+            else isFollowingPlayer = false;
         }
     }
     private void OnTriggerExit(Collider other)
@@ -103,7 +112,7 @@ public class Spider : MonoBehaviour, IDamageable
         isFollowingPlayer = false;
     }
 
-    public void TakeDamage(float amount, Vector3 hitPoint)
+    public void TakeDamage(float amount, Transform actor)
     {
         Die();
     }

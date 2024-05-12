@@ -58,7 +58,7 @@ public class Cumpider : MonoBehaviour, IDamageable
             Shoot();
             return;
         }
-        else if (direction.magnitude < groundDist) player.GetComponent<IDamageable>().TakeDamage(damage, Vector3.zero);
+        else if (direction.magnitude < groundDist) player.GetComponent<IDamageable>().TakeDamage(damage, transform);
         direction.Normalize();
         // Perform sphere cast to check for ground or wall
         RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);
@@ -122,7 +122,7 @@ public class Cumpider : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float amount, Vector3 hitPoint)
+    public void TakeDamage(float amount, Transform actor)
     {
         Die();
     }

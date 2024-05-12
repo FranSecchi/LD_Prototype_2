@@ -9,23 +9,21 @@ public enum ConsumibleType
 public class Consumible : MonoBehaviour, Item
 {
     [SerializeField] private ConsumibleType type;
-    [SerializeField] private float ammount;
+    [SerializeField] private int ammount;
     [SerializeField] private Transform player;
-
     public void pickUp()
     {
         switch (type)
         {
             case ConsumibleType.Health:
-                player.GetComponent<HealthController>().CurrentHP += ammount;
+                player.GetComponent<PickUpItem>().vendas += ammount;
                 break;
             case ConsumibleType.Food:
-                player.GetComponent<FPSController>().Eat(ammount);
-                HUD.instance.Eat(ammount);
+                player.GetComponent<PickUpItem>().menjar += ammount;
                 break;
             case ConsumibleType.Ammo:
                 Shooting s = player.GetComponent<Shooting>();
-                if (s.enabled) s.Ammo += (int)ammount;
+                if (s.enabled) s.maxAmmo += ammount;
                 else return;
                 break;
         }

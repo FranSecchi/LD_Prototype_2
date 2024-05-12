@@ -78,7 +78,7 @@ public class Shooting : MonoBehaviour
             // Hit object
             if(damageable != null)
             {
-                damageable.TakeDamage(damage, hit.point);
+                damageable.TakeDamage(damage, transform);
             }
 
         }

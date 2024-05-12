@@ -22,7 +22,7 @@ public class HealthController : MonoBehaviour, IDamageable
         currentHP = maxHP;
         GetComponent<FPSController>().Die();
     }
-    public void TakeDamage(float amount, Vector3 hitPoint)
+    public void TakeDamage(float amount, Transform actor)
     {
         currentHP -= amount;
         if(currentHP <= 0) Die();
@@ -35,5 +35,7 @@ public class HealthController : MonoBehaviour, IDamageable
                 blurController.SetBlurIntensity(normalizedHP);
             }
         }
+        if (actor == null)
+            GetComponent<FPSController>().Slow();
     }
 }

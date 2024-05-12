@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6921281f29ada4546917052ba65ab50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  detectionRadius: 7.89
+  moveSpeed: 5
+  detectionRadius: 17
   groundDist: 0.6
   damage: 10
+  damageCD: 0.5
   playerLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -89,7 +90,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7.89
+  m_Radius: 17
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3059678945191018089
 PrefabInstance:

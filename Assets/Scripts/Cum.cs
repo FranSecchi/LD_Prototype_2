@@ -22,7 +22,7 @@ internal class Cum : MonoBehaviour
         if (other.transform.CompareTag("Player"))
         {
             IDamageable dmg = other.transform.GetComponent<IDamageable>();
-            dmg.TakeDamage(damage, Vector3.zero);
+            dmg.TakeDamage(damage, null);
             Destroy(gameObject);
         }
     }

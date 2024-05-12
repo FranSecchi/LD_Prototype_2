@@ -38,15 +38,18 @@ public class FPSController : MonoBehaviour
 
     private float m_verticalVelocity;
     private float currentStamina;
+    private float slowFactor = 1f;
     private bool m_OnGrounded;
     private bool isDead = false;
     private bool isSprinting = false;
     private bool hasEaten = false;
     private const float m_surfaceGravity = -9.8f;
     private float fov;
-
     public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
     public bool IsDead { get => isDead; set => isDead = value; }
+
+
+    public bool HasEaten { get => hasEaten; set => hasEaten = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -65,7 +68,6 @@ public class FPSController : MonoBehaviour
         if (isDead) return;
         InputRotation();
         InputMovement();
-
         if (Input.GetKeyDown(jump))
         {
             m_verticalVelocity = m_jumpImpulse;
@@ -83,7 +85,7 @@ public class FPSController : MonoBehaviour
         m_verticalVelocity += m_OnGrounded ? 0 : m_surfaceGravity * Time.deltaTime;
         m_movement.y = m_verticalVelocity;
         m_movement *= isSprinting ? m_sprintSpeed : m_speed;
-        CollisionFlags collision = m_cc.Move(m_movement * Time.deltaTime);
+        CollisionFlags collision = m_cc.Move(m_movement * slowFactor * Time.deltaTime);
         if (collision.Equals(CollisionFlags.Below))
         {
             m_OnGrounded = true;
@@ -135,14 +137,14 @@ public class FPSController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isDead = false;
     }
-    internal void Eat(float ammount)
+    internal void Slow()
     {
-        StartCoroutine(DoEat(ammount));
+        StartCoroutine(DoSlow());
     }
-    private IEnumerator DoEat(float ammount)
+    private IEnumerator DoSlow()
     {
-        hasEaten = true;
-        yield return new WaitForSeconds(ammount);
-        hasEaten = false;
+        slowFactor = 0.3f;
+        yield return new WaitForSeconds(2f);
+        slowFactor = 1f;
     }
 }

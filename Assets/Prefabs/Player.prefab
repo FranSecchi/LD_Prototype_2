@@ -190,6 +190,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   key: 101
+  heal: 102
+  eat: 113
+  vendas: 0
+  menjar: 0
 --- !u!114 &876966276565187247
 MonoBehaviour:
   m_ObjectHideFlags: 0

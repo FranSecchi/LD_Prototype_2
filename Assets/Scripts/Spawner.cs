@@ -66,12 +66,12 @@ public class Spawner : MonoBehaviour
             }
             first = false;
         }
-        StartCoroutine(InstantiateEnemies());
+        if (times < spawnTimes)
+            StartCoroutine(InstantiateEnemies());
     }
 
     private IEnumerator InstantiateEnemies()
-    {
-        if (times >= spawnTimes) yield return null;
+    { 
         ++times;
         yield return new WaitForSeconds(spawnRate);
         foreach (Transform t in spawnPoints)

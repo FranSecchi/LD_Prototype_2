@@ -82,7 +82,7 @@ MonoBehaviour:
   spawnPoints:
   - {fileID: 2924413787394568061}
   - {fileID: 2924413786545941755}
-  spawnRate: 8
+  spawnRate: 10
   spawnTimes: 2
   useTrigger: 1
 --- !u!65 &2924413787034635932

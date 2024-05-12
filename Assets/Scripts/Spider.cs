@@ -11,6 +11,7 @@ public class Spider : MonoBehaviour, IDamageable
     public float damage = 10f;
     public LayerMask playerLayer;
     public LayerMask groundLayer;
+    public LayerMask wallLayer;
     private CharacterController ch;
     private float diff = 0f;
     private bool isFollowingPlayer = false;
@@ -29,24 +30,6 @@ public class Spider : MonoBehaviour, IDamageable
     void Update()
     {
         if (contr.IsDead) Die();
-        Debug.DrawRay(transform.position, transform.forward* 30f, Color.green);
-        Collider[] colliders = Physics.OverlapSphere(transform.position, detectionRadius, playerLayer);
-            isFollowingPlayer = false;
-        foreach (Collider collider in colliders)
-        {
-            if (collider.CompareTag("Player"))
-            {
-                player = collider.transform;
-                diff = player.GetComponent<CharacterController>().height / 2 - ch.height / 2;
-                RaycastHit hit;
-                bool b = Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius);
-                if (b && hit.collider.CompareTag("Player"))
-                {
-                    StartFollowingPlayer();
-                }
-                break;
-            }
-        }
         FollowPlayer();
     }
 
@@ -59,8 +42,9 @@ public class Spider : MonoBehaviour, IDamageable
     {
         if (isFollowingPlayer)
         {
-            Vector3 direction = (player.position - diff*Vector3.up - transform.position).normalized;
-
+            Vector3 direction = (player.position - diff*Vector3.up - transform.position);
+            if(direction.magnitude < groundDist) player.GetComponent<IDamageable>().TakeDamage(damage, Vector3.zero);
+            direction.Normalize();
             // Perform sphere cast to check for ground or wall
             RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);
             if (hits.Length > 0)
@@ -99,13 +83,24 @@ public class Spider : MonoBehaviour, IDamageable
             }
         }
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            other.transform.GetComponent<IDamageable>().TakeDamage(damage, Vector3.zero);
+            player = other.transform;
+            diff = player.GetComponent<CharacterController>().height / 2 - ch.height / 2;
+            RaycastHit hit;
+            // Use the adjusted starting position for the raycast
+            bool b = Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius, wallLayer);
+            if (b && hit.collider.CompareTag("Player"))
+            {
+                StartFollowingPlayer();
+            }
         }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        isFollowingPlayer = false;
     }
 
     public void TakeDamage(float amount, Vector3 hitPoint)

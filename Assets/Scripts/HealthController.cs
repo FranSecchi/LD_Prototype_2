@@ -26,5 +26,14 @@ public class HealthController : MonoBehaviour, IDamageable
     {
         currentHP -= amount;
         if(currentHP <= 0) Die();
+        if(currentHP / maxHP < 0.4f)
+        {
+            float normalizedHP = currentHP / maxHP;
+            BlurEffect blurController = FindObjectOfType<BlurEffect>();
+            if (blurController != null)
+            {
+                blurController.SetBlurIntensity(normalizedHP);
+            }
+        }
     }
 }

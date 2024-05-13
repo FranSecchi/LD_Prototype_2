@@ -135,11 +135,6 @@ PrefabInstance:
       propertyPath: vendas
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 42597544330667393, guid: 9dff370853f84b14ab34fd6194ce2c28,
-        type: 3}
-      propertyPath: maxDistance
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 876966276565187247, guid: 9dff370853f84b14ab34fd6194ce2c28,
         type: 3}
       propertyPath: checkPoint
@@ -1278,23 +1273,30 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 5696554553888866461}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &9141927313970538157
-Animator:
-  serializedVersion: 4
+--- !u!114 &9141927313970538162
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9141927313970538156}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ac3b5d51f0b486246993cab8d1c995cc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5eab433951f10348889305e4de51335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  txt: {fileID: 2084939188}
+  text: '"I should break this..."'
+--- !u!65 &9141927313970538163
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141927313970538156}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.4179578, y: 0.22537743, z: 0.12405528}
+  m_Center: {x: 0.43269515, y: 0.06491365, z: -0.029265363}

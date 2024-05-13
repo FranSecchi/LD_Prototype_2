@@ -48,19 +48,11 @@ public class Spider : MonoBehaviour, IDamageable
                 }
             }
 
-            Vector3 direction = (player.position - diff * Vector3.up - transform.position);
             // Calculate movement direction towards the player
-            Vector3 playerDirection = direction;
             Vector3 normal = transform.position - closestHit.collider.ClosestPointOnBounds(transform.position);
-            // If the spider is on the ground, project the direction onto the surface normal
-            if (closestHit.normal != Vector3.zero)
-            {
-                playerDirection = Vector3.ProjectOnPlane(playerDirection, normal.normalized).normalized;
-            }
 
-            transform.rotation = Quaternion.LookRotation(playerDirection);
+            transform.up = normal.normalized;
             // Move towards the point on the surface
-            ch.Move(playerDirection * moveSpeed * Time.deltaTime);
 
             // Rotate towards the player
         }
@@ -93,6 +85,7 @@ public class Spider : MonoBehaviour, IDamageable
             if (hits.Length > 0)
             {
                 // Find the closest hit point
+                bool b = false;
                 RaycastHit closestHit = hits[0];
                 float closestDistance = Mathf.Infinity;
                 foreach (RaycastHit hit in hits)
@@ -104,6 +97,7 @@ public class Spider : MonoBehaviour, IDamageable
                     }
                     if (hit.distance < closestDistance)
                     {
+                        b = true;
                         closestHit = hit;
                         closestDistance = hit.distance;
                     }
@@ -118,7 +112,7 @@ public class Spider : MonoBehaviour, IDamageable
                     playerDirection = Vector3.ProjectOnPlane(playerDirection, normal.normalized).normalized;
                 }
 
-                transform.rotation = Quaternion.LookRotation(playerDirection);
+                transform.rotation = Quaternion.LookRotation(playerDirection, b ? normal.normalized : Vector3.up) ;
                 // Move towards the point on the surface
                 ch.Move(playerDirection * moveSpeed * Time.deltaTime);
 
@@ -135,7 +129,6 @@ public class Spider : MonoBehaviour, IDamageable
             RaycastHit hit;
             // Use the adjusted starting position for the raycast
             bool b = Physics.Raycast(transform.position, (player.position - transform.position).normalized, out hit, detectionRadius, wallLayer);
-            Debug.DrawRay(transform.position, (player.position - transform.position), Color.magenta);
             if (b && hit.collider.CompareTag("Player"))
             {
                 isFollowingPlayer = true;

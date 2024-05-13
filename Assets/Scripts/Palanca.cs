@@ -8,22 +8,22 @@ public class Palanca : MonoBehaviour, Item
     [SerializeField] private Transform bridge;
     [SerializeField] private float yPosTop;
     [SerializeField] private float speed;
-    private Vector3 center;
+    [SerializeField] private float mult;
+    [SerializeField] private Transform manivela;
     public void pickUp()
     {
-        if(bridge.position.y > yPosTop)
-            bridge.position += Vector3.down * Time.deltaTime * speed;
+        if (bridge.position.y > yPosTop)
+            RotatePalanca();
+        else bridge.GetComponent<Bridge>().enabled = true;
         //Mesh mesh = GetComponent<MeshFilter>().mesh;
         //center = mesh.bounds.center;
-        //RotatePalanca();
     }
 
-    //private void RotatePalanca()
-    //{
-    //    Vector3 pivotOffset = palanca.position - center;
-    //    Vector3 rotationAxis = Vector3.Cross(pivotOffset.normalized, Vector3.up);
+    private void RotatePalanca()
+    {
 
-    //    // Rotate the palanca around the calculated axis
-    //    palanca.Rotate(rotationAxis, speed * Time.deltaTime);
-    //}
+            bridge.position += Vector3.down * Time.deltaTime * speed;
+        // Rotate the palanca around the calculated axis
+        manivela.Rotate(Vector3.up, speed * mult * Time.deltaTime);
+    }
 }

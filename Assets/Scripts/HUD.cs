@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class HUD : MonoBehaviour
@@ -14,6 +15,7 @@ public class HUD : MonoBehaviour
     public TextMeshProUGUI menjarTxt;
     public FPSController controller;
     public HealthController healthController;
+    public int nextScene;
     private int vendes = 0;
     private int menjar = 0;
 
@@ -47,5 +49,9 @@ public class HUD : MonoBehaviour
             yield return null;
         }
         eatTxt.text = "";
+    }
+    public void OnChangeScene()
+    {
+        SceneManager.LoadScene(nextScene);
     }
 }

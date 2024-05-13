@@ -228,6 +228,11 @@ PrefabInstance:
       objectReference: {fileID: 157667456}
     - target: {fileID: 8518445398247055063, guid: 9dff370853f84b14ab34fd6194ce2c28,
         type: 3}
+      propertyPath: maxAmmo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8518445398247055063, guid: 9dff370853f84b14ab34fd6194ce2c28,
+        type: 3}
       propertyPath: meleeRange
       value: 3.01
       objectReference: {fileID: 0}

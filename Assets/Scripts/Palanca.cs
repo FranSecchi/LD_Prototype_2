@@ -21,16 +21,14 @@ public class Palanca : MonoBehaviour, Item
         else
         {
             Camera.main.fieldOfView = fov;
-            bridge.GetComponent<Bridge>().enabled = true;
-        }
-        //Mesh mesh = GetComponent<MeshFilter>().mesh;
+            bridge.GetComponent<Bridge>().enabled = true;w
         //center = mesh.bounds.center;
     }
 
     private void RotatePalanca()
     {
         fov = Camera.main.fieldOfView;
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 33.8f, 0.2f);
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 48.3f, 0.2f);
             bridge.position += Vector3.down * Time.deltaTime * speed;
         // Rotate the palanca around the calculated axis
         manivela.Rotate(Vector3.up, speed * mult * Time.deltaTime);

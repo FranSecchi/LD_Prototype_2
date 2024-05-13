@@ -26,6 +26,7 @@ public class FPSController : MonoBehaviour
     public KeyCode sprint;
     public float m_sprintSpeed;
     public float m_stamina;
+    public float fovLrp;
     public float runCost;
     public float regainStaminaSpeed;
     public float m_sprintFoV;
@@ -126,7 +127,7 @@ public class FPSController : MonoBehaviour
             if (currentStamina < m_stamina) currentStamina = Mathf.Min(m_stamina, currentStamina + Time.deltaTime * regainStaminaSpeed);
         }
         float f = isSprinting ? m_sprintFoV : fov;
-        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, f, 5f* Time.deltaTime) ;
+        Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, f, fovLrp * Time.deltaTime) ;
     }
     internal void Die()
     {

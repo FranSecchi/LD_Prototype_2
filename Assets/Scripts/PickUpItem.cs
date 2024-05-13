@@ -11,17 +11,23 @@ public class PickUpItem : MonoBehaviour
     [SerializeField] private KeyCode key;
     [SerializeField] private KeyCode heal;
     [SerializeField] private KeyCode eat;
-    public int vendas = 0;
+    public int vendas;
     public int menjar = 0;
     private RaycastHit r;
     private HUD hud;
+    private void OnDrawGizmos()
+    {
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(pitch.transform.position, pitch.transform.position + pitch.transform.forward * maxDistance);
+    }
     private void Start()
     {
         hud = HUD.instance;
     }
     private void Update()
     {
-        if (Input.GetKey(key))
+        if (Input.GetKey(key) || Input.GetKeyDown(key))
         {
             if(Physics.Raycast(pitch.position, pitch.forward, out r, maxDistance, itemLayer))
             {

@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4190659115314956277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46443284, y: 2.63, z: -0.724729}
+  m_LocalPosition: {x: 0.6978445, y: 125.65248, z: -51.942757}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_mouseSensitivityY: 2
   m_rotationSpeed: 0
   flag: 1
-  m_angleVisionY: 60
+  m_angleVisionY: 90
   jump: 32
   m_jumpImpulse: 3
   sprint: 304
@@ -349,7 +349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8102260528130093712}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.416, y: -0.28899997, z: 0.6339998}
+  m_LocalPosition: {x: 0.416, y: -0.435, z: 0.818}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

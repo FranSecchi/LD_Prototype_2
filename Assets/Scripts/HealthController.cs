@@ -12,7 +12,7 @@ public class HealthController : MonoBehaviour, IDamageable
     public Transform CheckPoint { get => checkPoint; set => checkPoint = value; }
     public float CurrentHP { get => currentHP; set => currentHP = value; }
 
-    private void Start()
+    private void Awake()
     {
         currentHP = maxHP;
     }

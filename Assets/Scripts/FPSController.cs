@@ -43,6 +43,7 @@ public class FPSController : MonoBehaviour
     private bool isDead = false;
     private bool isSprinting = false;
     private bool hasEaten = false;
+    private bool canMove = true;
     private const float m_surfaceGravity = -9.8f;
     private float fov;
     public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
@@ -67,16 +68,17 @@ public class FPSController : MonoBehaviour
     {
         if (isDead) return;
         InputRotation();
-        InputMovement();
-        if (Input.GetKeyDown(jump))
-        {
-            m_verticalVelocity = m_jumpImpulse;
-        }
+        if(canMove)
+            InputMovement();
     }
 
 
     private void InputMovement()
     {
+        if (Input.GetKeyDown(jump))
+        {
+            m_verticalVelocity = m_jumpImpulse;
+        }
         Sprinting();
         m_front = transform.forward * Input.GetAxis("Vertical");
         m_right = transform.right * Input.GetAxis("Horizontal");
@@ -131,7 +133,10 @@ public class FPSController : MonoBehaviour
         isDead = true;
         StartCoroutine(Respawn());
     }
-
+    internal void CantMove(bool b)
+    {
+        canMove = b;
+    }
     private IEnumerator Respawn()
     {
         yield return new WaitForSeconds(0.5f);

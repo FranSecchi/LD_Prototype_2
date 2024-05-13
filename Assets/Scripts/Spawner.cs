@@ -42,7 +42,11 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (!useTrigger)
+        {
+            Spawn();
+        }
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -55,7 +59,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
-    private void Spawn()
+    internal void Spawn()
     {
         if (first)
         {

@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 5437091335701470118}
   - component: {fileID: 5437091335701470119}
   - component: {fileID: 5437091335701470116}
-  m_Layer: 3
+  m_Layer: 6
   m_Name: Linterna
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c4bd3970767a549abca0030224d980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawner: {fileID: 0}
   pitch: {fileID: 0}
   model: {fileID: 5437091335352513285}
   light: {fileID: 5437091334658748509}

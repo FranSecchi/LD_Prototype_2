@@ -28,6 +28,42 @@ public class Spider : MonoBehaviour, IDamageable
     {
         contr = FindObjectOfType<FPSController>();
         ch = GetComponent<CharacterController>();
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);
+        if (hits.Length > 0)
+        {
+            // Find the closest hit point
+            RaycastHit closestHit = hits[0];
+            float closestDistance = Mathf.Infinity;
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.normal == Vector3.up)
+                {
+                    closestHit = hit;
+                    break;
+                }
+                if (hit.distance < closestDistance)
+                {
+                    closestHit = hit;
+                    closestDistance = hit.distance;
+                }
+            }
+
+            Vector3 direction = (player.position - diff * Vector3.up - transform.position);
+            // Calculate movement direction towards the player
+            Vector3 playerDirection = direction;
+            Vector3 normal = transform.position - closestHit.collider.ClosestPointOnBounds(transform.position);
+            // If the spider is on the ground, project the direction onto the surface normal
+            if (closestHit.normal != Vector3.zero)
+            {
+                playerDirection = Vector3.ProjectOnPlane(playerDirection, normal.normalized).normalized;
+            }
+
+            transform.rotation = Quaternion.LookRotation(playerDirection);
+            // Move towards the point on the surface
+            ch.Move(playerDirection * moveSpeed * Time.deltaTime);
+
+            // Rotate towards the player
+        }
     }
     void Update()
     {

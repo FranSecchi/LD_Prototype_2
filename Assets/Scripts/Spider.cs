@@ -112,7 +112,7 @@ public class Spider : MonoBehaviour, IDamageable
                     playerDirection = Vector3.ProjectOnPlane(playerDirection, normal.normalized).normalized;
                 }
 
-                transform.rotation = Quaternion.LookRotation(playerDirection, b ? normal.normalized : Vector3.up) ;
+                transform.rotation = Quaternion.LookRotation(playerDirection, b ? normal.normalized : transform.up) ;
                 // Move towards the point on the surface
                 ch.Move(playerDirection * moveSpeed * Time.deltaTime);
 

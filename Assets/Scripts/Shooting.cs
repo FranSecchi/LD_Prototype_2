@@ -22,6 +22,7 @@ public class Shooting : MonoBehaviour
     private int ammo = 0;
     private float myTime = 0.0f;
     private float nextFire = 0.5F;
+    private bool firePressedThisFrame = false;
 
     public int Ammo { get => ammo; set => ammo = value; }
 
@@ -42,15 +43,22 @@ public class Shooting : MonoBehaviour
         ammoTxt.transform.parent.gameObject.SetActive(true);
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if (ammo > magazine) ammo = magazine;
-        myTime += Time.fixedDeltaTime;
+        if(myTime < fireRate) myTime += Time.deltaTime;
 
-        if(myTime >= fireRate && Input.GetKeyDown(fireKey))
+        if(!firePressedThisFrame && myTime >= fireRate && Input.GetKeyDown(fireKey))
         {
             Shoot();
             myTime = 0f;
+            firePressedThisFrame = true; // Set flag to true to indicate fire key has been pressed
+        }
+
+        // Check if fire key is released
+        if (Input.GetKeyUp(fireKey))
+        {
+            firePressedThisFrame = false; // Reset flag when fire key is released
         }
         if (Input.GetKeyDown(reloadKey))
             Reload();
@@ -69,7 +77,7 @@ public class Shooting : MonoBehaviour
     {
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
-        float distance = ammo > 0 ? shootRange : meleeRange;
+        float distance = ammo > 0 ? Mathf.Infinity : meleeRange;
         anim.SetTrigger(ammo > 0 ? "Shoot" : "Hit");
         // Perform the raycast
         if (Physics.Raycast(ray, out hit, distance))

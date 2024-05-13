@@ -435,8 +435,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 45
+  m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -503,7 +503,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 150}
+  m_SizeDelta: {x: 800, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1391532720
 GameObject:
@@ -614,12 +614,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1352992457}
-  textToWrite: "\"Imperi Alemany, 1910. Per qui tingui aquesta carta a les mans,
-    el contingut que trobar\xE0s a continuaci\xF3 ser\xE0 dif\xEDcil de creure. Per\xF2
-    el m\xF3n ha de con\xE8ixer la hist\xF2ria.\""
+  textToWrite: "\"Imperi Alemany, 1910.\"                   \"Per qui tingui aquesta
+    carta a les mans, el contingut que trobar\xE0s a continuaci\xF3 ser\xE0 dif\xEDcil
+    de creure. Per\xF2 el m\xF3n ha de con\xE8ixer la hist\xF2ria.\""
   textToWrite2: "\"La hist\xF2ria de la m\xEDtica pedra; l'Azure Ring,  i com la
-    seva trobada va portar a la desgr\xE0cia de tota la gent que va ficar peu en
-    aquella mina.\""
+    seva trobada va portar la desgr\xE0cia a tota la gent que va ficar peu en aquella
+    mina.\""
   timePerCharacter: 0.1
   sceneToLoad: 1
 --- !u!114 &1855931680

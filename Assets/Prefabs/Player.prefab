@@ -117,17 +117,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 525c4b86f49357547b8791b39ff20066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_speed: 5
+  m_speed: 3.5
   m_PitchController: {fileID: 4190659115497004342}
   m_mouseSensitivityX: 2
   m_mouseSensitivityY: 2
   m_rotationSpeed: 0
   flag: 1
-  m_angleVisionY: 90
+  m_angleVisionY: 140
   jump: 32
   m_jumpImpulse: 3
   sprint: 304
-  m_sprintSpeed: 7
+  m_sprintSpeed: 6
   m_stamina: 5
   runCost: 2
   regainStaminaSpeed: 1

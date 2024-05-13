@@ -66,7 +66,7 @@ public class Spawner : MonoBehaviour
 
             foreach (Transform t in spawnPoints)
             {
-                Instantiate(prefab, t.position, Quaternion.identity, transform);
+                Instantiate(prefab, t.position, Quaternion.identity);
             }
             first = false;
         }

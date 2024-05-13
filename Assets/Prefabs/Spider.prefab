@@ -72,7 +72,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
+  m_Height: 0.5
   m_Radius: 0.5
   m_SlopeLimit: 180
   m_StepOffset: 0.3
@@ -107,17 +107,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7f8352ece24867a42b6a13e105b9c005,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 51.385998
+      value: 21.568
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7f8352ece24867a42b6a13e105b9c005,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 51.385998
+      value: 21.568
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7f8352ece24867a42b6a13e105b9c005,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 51.385998
+      value: 21.568
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7f8352ece24867a42b6a13e105b9c005,
         type: 3}

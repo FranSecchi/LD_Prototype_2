@@ -6,6 +6,7 @@ public class Pistol : MonoBehaviour, Item
 {
     [SerializeField] private Transform hand;
     [SerializeField] private Shooting shooting;
+    [SerializeField] private bool start;
     public void pickUp()
     {
         transform.parent = hand;
@@ -17,7 +18,7 @@ public class Pistol : MonoBehaviour, Item
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (start) pickUp();
     }
 
     // Update is called once per frame

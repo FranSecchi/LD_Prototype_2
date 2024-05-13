@@ -614,8 +614,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1352992457}
-  textToWrite: '""'
-  textToWrite2: 
+  textToWrite: "\"Per a la meva incredulitat, all\xE0 es trobava...\"                "
+  textToWrite2: '"Lobitx... xutexxu."'
   timePerCharacter: 0.15
   sceneToLoad: 3
 --- !u!114 &1855931680

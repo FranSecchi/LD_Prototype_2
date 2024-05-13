@@ -21,7 +21,8 @@ public class Palanca : MonoBehaviour, Item
         else
         {
             Camera.main.fieldOfView = fov;
-            bridge.GetComponent<Bridge>().enabled = true;w
+            bridge.GetComponent<Bridge>().enabled = true;
+        }
         //center = mesh.bounds.center;
     }
 

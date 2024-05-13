@@ -12,6 +12,6 @@ EditorBuildSettings:
     path: "Assets/Scenes/Secci\xF32.unity"
     guid: 1ad2ec4fc3ddfd04fbb7f3c321ffac4e
   - enabled: 1
-    path: Assets/Scenes/SafeZone1.unity
-    guid: 426828616b5952b43b6b1b69af5d6762
+    path: Assets/Scenes/ClimbingScene.unity
+    guid: 8a098b3480ea56841bbe19403f8c1c17
   m_configObjects: {}

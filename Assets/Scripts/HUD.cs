@@ -32,8 +32,8 @@ public class HUD : MonoBehaviour
     {
         staminaImg.fillAmount = controller.CurrentStamina / controller.m_stamina;
         healthImg.fillAmount = healthController.CurrentHP / healthController.maxHP;
-        vendasTxt.text = "Vendas: "+vendes.ToString();
-        menjarTxt.text = "Comida: " + menjar.ToString();
+        vendasTxt.text = "Vendes: "+vendes.ToString();
+        menjarTxt.text = "Menjar: " + menjar.ToString();
     }
     internal void Eat(float ammount)
     {

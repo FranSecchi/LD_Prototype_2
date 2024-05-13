@@ -594,6 +594,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 119589421884842362, guid: a6dc92d4318347c41bc344e814639d88,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 127.6
+      objectReference: {fileID: 0}
     - target: {fileID: 1043597430736845395, guid: a6dc92d4318347c41bc344e814639d88,
         type: 3}
       propertyPath: player
@@ -603,6 +608,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LD_P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5309302773325517372, guid: a6dc92d4318347c41bc344e814639d88,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -20.600002
       objectReference: {fileID: 0}
     - target: {fileID: 5389906405482833928, guid: a6dc92d4318347c41bc344e814639d88,
         type: 3}
@@ -657,6 +667,16 @@ PrefabInstance:
     - target: {fileID: 5389906405482833928, guid: a6dc92d4318347c41bc344e814639d88,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7321430793056808790, guid: a6dc92d4318347c41bc344e814639d88,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8730075358217032256, guid: a6dc92d4318347c41bc344e814639d88,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1192,6 +1212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bridge: {fileID: 1397221720}
+  bitxo: {fileID: 0}
   yPosTop: 5.1
   speed: 1.5
   mult: 0

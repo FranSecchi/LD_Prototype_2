@@ -18,8 +18,8 @@ public class Candau : MonoBehaviour, IDamageable
     }
     private void OnTriggerEnter(Collider other)
     {
-        other.transform.GetComponent<FPSController>().CantMove(false);
-        HUD.instance.transform.GetComponent<Animator>().SetTrigger("FadeOut");
+        //other.transform.GetComponent<FPSController>().CantMove(false);
+        //HUD.instance.transform.GetComponent<Animator>().SetTrigger("FadeOut");
     }
     // Start is called before the first frame update
     void Start()

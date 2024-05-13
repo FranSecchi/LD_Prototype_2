@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8518445398247055063}
   - component: {fileID: 42597544330667393}
   - component: {fileID: 876966276565187247}
+  - component: {fileID: 8023442463421819811}
   m_Layer: 12
   m_Name: Player
   m_TagString: Player
@@ -161,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d8589ecae15a8f4296df95433b61441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
+  anim: {fileID: 8023442463421819811}
   camera: {fileID: 4190659116668344371}
   damage: 5
   fireRate: 0.5
@@ -208,6 +209,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   checkPoint: {fileID: 0}
   maxHP: 50
+--- !u!95 &8023442463421819811
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4190659115314956277}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cb7901c1bfa9a00489a772beb7bd19e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4190659115497004343
 GameObject:
   m_ObjectHideFlags: 0

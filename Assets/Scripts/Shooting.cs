@@ -70,6 +70,7 @@ public class Shooting : MonoBehaviour
         Ray ray = camera.ViewportPointToRay(new Vector3(0.5F, 0.5F, 0));
         RaycastHit hit;
         float distance = ammo > 0 ? shootRange : meleeRange;
+        anim.SetTrigger(ammo > 0 ? "Shoot" : "Hit");
         // Perform the raycast
         if (Physics.Raycast(ray, out hit, distance))
         {

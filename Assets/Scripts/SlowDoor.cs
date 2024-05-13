@@ -16,9 +16,9 @@ public class SlowDoor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (move && transform.position.y < topy)
+        if (move && transform.position.y > topy)
         {
-            transform.position += Vector3.up * Time.deltaTime * speed;
+            transform.position += Vector3.down * Time.deltaTime * speed;
         }
     }
     private void OnTriggerEnter(Collider other)

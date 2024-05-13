@@ -32,6 +32,34 @@ public class Cumpider : MonoBehaviour, IDamageable
     {
         elapsed = fireRate;
         ch = GetComponent<CharacterController>();
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);
+        if (hits.Length > 0)
+        {
+            // Find the closest hit point
+            RaycastHit closestHit = hits[0];
+            float closestDistance = Mathf.Infinity;
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.normal == Vector3.up)
+                {
+                    closestHit = hit;
+                    break;
+                }
+                if (hit.distance < closestDistance)
+                {
+                    closestHit = hit;
+                    closestDistance = hit.distance;
+                }
+            }
+
+            // Calculate movement direction towards the player
+            Vector3 normal = transform.position - closestHit.collider.ClosestPointOnBounds(transform.position);
+
+            transform.up = normal.normalized;
+            // Move towards the point on the surface
+
+            // Rotate towards the player
+        }
     }
     void Update()
     {
@@ -65,6 +93,7 @@ public class Cumpider : MonoBehaviour, IDamageable
         if (hits.Length > 0)
         {
             // Find the closest hit point
+            bool b = false;
             RaycastHit closestHit = hits[0];
             float closestDistance = Mathf.Infinity;
             foreach (RaycastHit hit in hits)
@@ -76,6 +105,7 @@ public class Cumpider : MonoBehaviour, IDamageable
                 }
                 if (hit.distance < closestDistance)
                 {
+                    b = true;
                     closestHit = hit;
                     closestDistance = hit.distance;
                 }
@@ -91,7 +121,7 @@ public class Cumpider : MonoBehaviour, IDamageable
             }
             transform.up = closestHit.normal;
 
-            transform.rotation = Quaternion.LookRotation(playerDirection);
+            transform.rotation = Quaternion.LookRotation(playerDirection, b ? normal.normalized : transform.up);
             // Move towards the point on the surface
             ch.Move(playerDirection * moveSpeed * Time.deltaTime);
             // Rotate towards the player

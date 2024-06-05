@@ -42,8 +42,11 @@ public class PickUpItem : MonoBehaviour
         {
             Use(ConsumibleType.Food, 2f);
         }
-        hud.Vendes = vendas;
-        hud.Menjar = menjar;
+        if(hud != null)
+        {
+            hud.Vendes = vendas;
+            hud.Menjar = menjar;
+        }
     }
 
     internal void Use(ConsumibleType type, float ammount)

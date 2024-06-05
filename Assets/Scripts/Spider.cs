@@ -7,6 +7,7 @@ public class Spider : MonoBehaviour, IDamageable
 {
     public float moveSpeed = 3f;
     private Transform player;
+    public float hitRange = 10f;
     public float groundDist = 10f;
     public float damage = 10f;
     public float damageCD = 0.5f;
@@ -24,6 +25,8 @@ public class Spider : MonoBehaviour, IDamageable
         
         if (!gizmos) return;
         Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, hitRange);
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, groundDist);
     }
     private void Start()
@@ -70,7 +73,7 @@ public class Spider : MonoBehaviour, IDamageable
     {
         
         Vector3 direction = (player.position - diff*Vector3.up - transform.position);
-        if (direction.magnitude < groundDist && elapsed >= damageCD)
+        if (direction.magnitude < hitRange && elapsed >= damageCD)
         {
             player.GetComponent<IDamageable>().TakeDamage(damage, transform);
             elapsed = 0f;

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4629042617355887006}
   - component: {fileID: 4629042617355887003}
   - component: {fileID: 1008566661}
+  - component: {fileID: 733024718}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -60,7 +61,7 @@ MonoBehaviour:
   wallLayer:
     serializedVersion: 2
     m_Bits: 4224
-  gizmos: 0
+  gizmos: 1
 --- !u!143 &4629042617355887003
 CharacterController:
   m_ObjectHideFlags: 0
@@ -91,6 +92,19 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 16.7
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &733024718
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4629042617355887005}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.91
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3059678945191018089
 PrefabInstance:
@@ -127,7 +141,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7f8352ece24867a42b6a13e105b9c005,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.297
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7f8352ece24867a42b6a13e105b9c005,
         type: 3}

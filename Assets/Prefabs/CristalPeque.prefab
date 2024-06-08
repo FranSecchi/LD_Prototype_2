@@ -44,7 +44,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 0.20287468, g: 0.9150943, b: 0.8653312, a: 1}
+  m_Color: {r: 0.9137255, g: 0.7411765, b: 0.20392157, a: 1}
   m_Intensity: 0.6
   m_Range: 25.63
   m_SpotAngle: 30
@@ -176,7 +176,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: af31a57d4da579349b501edc3eb307ba, type: 2}
+      objectReference: {fileID: 2100000, guid: b653a9c7ec2c9e84cb1761b3a4eb351a, type: 2}
     - target: {fileID: 919132149155446097, guid: 47aa0b2bc8cc99e4e83a77dd7271a255,
         type: 3}
       propertyPath: m_Name

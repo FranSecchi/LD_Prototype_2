@@ -23,7 +23,7 @@ public class Lift : MonoBehaviour, Item
             player.position += Vector3.up * Time.deltaTime * speed;
         }
             //lift.position = Vector3.Lerp(lift.position, lift.position + Vector3.up * Time.deltaTime * speed, 0.15f);
-        else
-            HUD.instance.transform.GetComponent<Animator>().SetTrigger("FadeOut");
+        //else
+        //    HUD.instance.transform.GetComponent<Animator>().SetTrigger("FadeOut");
     }
 }

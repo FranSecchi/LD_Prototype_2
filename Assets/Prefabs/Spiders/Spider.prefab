@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4629042617355887006}
   - component: {fileID: 4629042617355887003}
   - component: {fileID: 1008566661}
-  - component: {fileID: 733024718}
   m_Layer: 0
   m_Name: Spider
   m_TagString: Untagged
@@ -48,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6921281f29ada4546917052ba65ab50e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3.5
+  moveSpeed: 5
   hitRange: 1.15
   groundDist: 0.6
   damage: 3
@@ -75,9 +74,9 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 0
-  m_Radius: 0.2
+  m_Radius: 0.5
   m_SlopeLimit: 180
-  m_StepOffset: 0
+  m_StepOffset: 0.3
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
@@ -93,19 +92,6 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 16.7
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &733024718
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4629042617355887005}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.91
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3059678945191018089
 PrefabInstance:

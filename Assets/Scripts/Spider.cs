@@ -33,6 +33,7 @@ public class Spider : MonoBehaviour, IDamageable
     {
         contr = FindObjectOfType<FPSController>();
         ch = GetComponent<CharacterController>();
+        PerformRaycastAndUpdatePosition();
         //RaycastHit[] hits = Physics.SphereCastAll(transform.position, groundDist, -transform.up, groundDist, groundLayer);
         //if (hits.Length > 0)
         //{

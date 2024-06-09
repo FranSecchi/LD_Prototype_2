@@ -15,16 +15,16 @@ public class Spawner : MonoBehaviour
     private bool first = true;
     private void OnDrawGizmos()
     {
-        Collider boxCollider = GetComponent<BoxCollider>();
-        if (boxCollider != null)
-        {
-            // Get the bounds of the BoxCollider
-            Bounds bounds = boxCollider.bounds;
+        //Collider boxCollider = GetComponent<BoxCollider>();
+        //if (boxCollider != null)
+        //{
+        //    // Get the bounds of the BoxCollider
+        //    Bounds bounds = boxCollider.bounds;
 
-            // Draw the bounds using Gizmos
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireCube(bounds.center, bounds.size);
-        }
+        //    // Draw the bounds using Gizmos
+        //    Gizmos.color = Color.green;
+        //    Gizmos.DrawWireCube(bounds.center, bounds.size);
+        //}
         foreach(Transform t in spawnPoints)
         {
             Gizmos.color = new Color(1f, 0f, 1f, 0.5f);

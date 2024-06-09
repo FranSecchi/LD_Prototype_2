@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerTextWriter : MonoBehaviour
 {
     [SerializeField] private TMP_Text text;
-    [SerializeField] private float timePerCharacter;
     private float timer = 0f;
 
     private int characterIndex;
@@ -22,19 +21,19 @@ public class PlayerTextWriter : MonoBehaviour
         currentText = "";
         text.text = currentText;
     }
-    public void WriteText(string text)
+    public void WriteText(string text, float time)
     {
         StopAllCoroutines();
         currentText = text;
         characterIndex = 0;
-        StartCoroutine(Write());
+        StartCoroutine(Write(time));
     }
-    private IEnumerator Write()
+    private IEnumerator Write(float time)
     {
         while (characterIndex < currentText.Length)
         {
             timer += Time.deltaTime;
-            if (timer >= timePerCharacter)
+            if (timer >= time)
             {
                 characterIndex++;
                 text.text = currentText.Substring(0, characterIndex);

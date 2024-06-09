@@ -32,6 +32,7 @@ public class Cumpider : MonoBehaviour, IDamageable
     {
         elapsed = fireRate;
         ch = GetComponent<CharacterController>();
+        PerformRaycastAndUpdatePosition();
     }
     void Update()
     {

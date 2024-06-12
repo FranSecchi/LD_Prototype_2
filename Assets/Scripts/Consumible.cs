@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,5 +29,10 @@ public class Consumible : MonoBehaviour, Item
                 break;
         }
         Destroy(gameObject);
+    }
+
+    private void Start()
+    {
+        player = FindObjectOfType<FPSController>().gameObject.transform;
     }
 }

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 1041701616694388741, guid: 2fc2ff5c8658d7b4c842b0f814f92c7d,
         type: 3}
       propertyPath: m_Name
-      value: CristalGran
+      value: CristalGran Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3301332940224078254, guid: 2fc2ff5c8658d7b4c842b0f814f92c7d,
         type: 3}
@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 3301332940224078254, guid: 2fc2ff5c8658d7b4c842b0f814f92c7d,
         type: 3}
       propertyPath: m_Color.g
-      value: 0.7419072
+      value: 0.5803922
       objectReference: {fileID: 0}
     - target: {fileID: 3301332940224078254, guid: 2fc2ff5c8658d7b4c842b0f814f92c7d,
         type: 3}

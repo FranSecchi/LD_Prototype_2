@@ -617,9 +617,8 @@ MonoBehaviour:
   textToWrite: "\"Imperi Alemany, 1910.\"                   \"Per qui tingui aquesta
     carta a les mans, el contingut que trobar\xE0s a continuaci\xF3 ser\xE0 dif\xEDcil
     de creure. Per\xF2 el m\xF3n ha de con\xE8ixer la hist\xF2ria.\""
-  textToWrite2: "\"La hist\xF2ria de la m\xEDtica pedra; l'Azure Ring,  i com la
-    seva trobada va portar la desgr\xE0cia a tota la gent que va ficar peu en aquella
-    mina.\""
+  textToWrite2: "\"La hist\xF2ria de la m\xEDtica pedra; The ,  i com la seva trobada
+    va portar la desgr\xE0cia a tota la gent que va ficar peu en aquella mina.\""
   timePerCharacter: 0.1
   sceneToLoad: 1
 --- !u!114 &1855931680

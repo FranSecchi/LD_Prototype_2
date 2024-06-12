@@ -32,6 +32,7 @@ public class PlayerTextWriter : MonoBehaviour
     {
         while (characterIndex < currentText.Length)
         {
+            text.enabled = true;
             timer += Time.deltaTime;
             if (timer >= time)
             {
@@ -42,5 +43,11 @@ public class PlayerTextWriter : MonoBehaviour
             yield return null;
         }
         characterIndex = 0;
+        StartCoroutine(Remove());
+    }
+    private IEnumerator Remove()
+    {
+        yield return new WaitForSeconds(3f);
+        text.text = "";
     }
 }

@@ -9,24 +9,31 @@ public class Lift : MonoBehaviour, Item
     [SerializeField] private float yPosTop;
     [SerializeField] private float speed;
     private bool used = false;
+    private bool moving = false;
     public void pickUp()
     {
         if (used) return;
         used = true;
-        StartCoroutine(Move());
+        moving = true;
+        player.GetComponent<FPSController>().CantMove(false);
             //lift.position = Vector3.Lerp(lift.position, lift.position + Vector3.up * Time.deltaTime * speed, 0.15f);
         //else
         //    HUD.instance.transform.GetComponent<Animator>().SetTrigger("FadeOut");
     }
-    private IEnumerator Move()
+    private void Update()
     {
-        while (lift.position.y < yPosTop)
+        if (moving)
         {
-            player.GetComponent<FPSController>().CantMove(false);
-            lift.position += Vector3.up * Time.deltaTime * speed;
-            player.position += Vector3.up * Time.deltaTime * speed;
-            yield return null;
+            if (lift.position.y < yPosTop)
+            {
+                lift.position += Vector3.up * Time.deltaTime * speed;
+                player.position += Vector3.up * Time.deltaTime * speed;
+            }
+            else
+            {
+                player.GetComponent<FPSController>().CantMove(true);
+                moving = false;
+            }
         }
-        player.GetComponent<FPSController>().CantMove(true);
     }
 }

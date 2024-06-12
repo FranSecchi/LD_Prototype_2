@@ -15242,7 +15242,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1391398685}
     - target: {fileID: 138469728855086104, guid: 25bffd9a41c786e4bae1e8624e656395,
         type: 3}
       propertyPath: ammount
@@ -22648,6 +22648,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   heal: 102
   text: {fileID: 2084939188}
+--- !u!4 &1391398685 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4190659115314956280, guid: 9dff370853f84b14ab34fd6194ce2c28,
+    type: 3}
+  m_PrefabInstance: {fileID: 19383110}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1396984680 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 26844662620191305, guid: f997d3168f141c04ab3e3c8f82696868,
@@ -25334,7 +25340,7 @@ PrefabInstance:
         type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1391398685}
     - target: {fileID: 138469728855086104, guid: 25bffd9a41c786e4bae1e8624e656395,
         type: 3}
       propertyPath: ammount
